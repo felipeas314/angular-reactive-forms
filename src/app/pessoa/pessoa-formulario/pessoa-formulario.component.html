@@ -1,0 +1,31 @@
+<form [formGroup]="form" >
+
+  Value: {{form.value | json}}
+
+  <div>
+    <input type="text" formControlName="primeiroNome">
+  </div>
+
+  <div>
+    <input type="text" formControlName="ultimoNome">
+  </div>
+
+  <div formArrayName="telefones">
+
+    <div *ngFor="let telefone of getTelefoneForms().controls; let i=index" [formGroupName]="i">
+      <input matInput placeholder="area" formControlName="ddd">
+      <input matInput placeholder="prefix" formControlName="numero">
+      <button (click)="deletaTelefone(i)">Deleta</button>
+    </div>
+
+    <div>
+      <button id="adicionaTelefone" (click)="adicionaTelefone()">Adiciona Telefone</button>
+    </div>
+
+  </div>
+
+  <div>
+    <input type="submit" value="Adiciona" (click)="adiciona()">
+  </div>
+
+</form>
